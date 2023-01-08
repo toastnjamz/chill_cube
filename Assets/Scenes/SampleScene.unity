@@ -5216,6 +5216,7 @@ GameObject:
   - component: {fileID: 1531383293}
   - component: {fileID: 1531383294}
   - component: {fileID: 1531383295}
+  - component: {fileID: 1531383296}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -5296,6 +5297,24 @@ MonoBehaviour:
   tRight: {fileID: 1731300523}
   tFront: {fileID: 796683194}
   tBack: {fileID: 311878450}
+--- !u!114 &1531383296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531383292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d65edefbc04f14a8a2c49f83187338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  front: []
+  back: []
+  up: []
+  down: []
+  left: []
+  right: []
 --- !u!1001 &1564447107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7339,6 +7358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111563578}
+  - component: {fileID: 2111563579}
   m_Layer: 5
   m_Name: CubeMap
   m_TagString: Untagged
@@ -7372,6 +7392,24 @@ RectTransform:
   m_AnchoredPosition: {x: -702, y: 368}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2111563579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111563577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c70711522f2720408a57483674093d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  up: {fileID: 2116635910}
+  down: {fileID: 845280451}
+  left: {fileID: 530779275}
+  right: {fileID: 671470807}
+  front: {fileID: 1048843016}
+  back: {fileID: 229996575}
 --- !u!1 &2116635909
 GameObject:
   m_ObjectHideFlags: 0
