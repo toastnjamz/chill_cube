@@ -6,10 +6,10 @@ public class RotateBigCube : MonoBehaviour
 {
     Vector2 firstPressPos;
     Vector2 secondPressPos;
-    Vector2 currentSwipe;
+    Vector2 currentSwipe; // looks after the direction of the swipe
 
     public GameObject target;
-    float speed = 200f;
+    public float speed = 200f;
 
     Vector3 previousMousePosition;
     Vector3 mouseDelta;
