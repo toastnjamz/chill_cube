@@ -27,23 +27,7 @@ public class ReadCube : MonoBehaviour
     void Start()
     {
         SetRayTransforms();
-        
-        cubeState = FindObjectOfType<CubeState>();
-        cubeMap = FindObjectOfType<CubeMap>();
-
-        // set the state of each position in the list of sides
-        // so we know what color is in what position
-        cubeState.up = ReadFace(upRays, tUp);
-        cubeState.down = ReadFace(downRays, tDown);
-        cubeState.left = ReadFace(leftRays, tLeft);
-        cubeState.right = ReadFace(rightRays, tRight);
-        cubeState.front = ReadFace(frontRays, tFront);
-        cubeState.back = ReadFace(backRays, tBack);
-
-        // update the map with the found position
-        cubeMap.Set();
-
-
+ 
     }
 
     // Update is called once per frame
@@ -57,6 +41,17 @@ public class ReadCube : MonoBehaviour
         cubeState = FindObjectOfType<CubeState>();
         cubeMap = FindObjectOfType<CubeMap>();
 
+        // set the state of each position in the list of sides
+        // so we know what color is in what position
+        cubeState.up = ReadFace(upRays, tUp);
+        cubeState.down = ReadFace(downRays, tDown);
+        cubeState.left = ReadFace(leftRays, tLeft);
+        cubeState.right = ReadFace(rightRays, tRight);
+        cubeState.front = ReadFace(frontRays, tFront);
+        cubeState.back = ReadFace(backRays, tBack);
+
+        // update the map with the found positions
+        cubeMap.Set();
     }
     void SetRayTransforms()
     {
@@ -79,7 +74,6 @@ public class ReadCube : MonoBehaviour
         //  |0|1|2|
         //  |3|4|5|
         //  |6|7|8|
-
         for (int y = 1; y > -2; y--)
         {
             for (int x = -1; x < 2; x++)
@@ -91,8 +85,6 @@ public class ReadCube : MonoBehaviour
                 rayStart.name = rayCount.ToString();
                 rays.Add(rayStart);
                 rayCount++;
-
-
             }
         }
         rayTransform.localRotation = Quaternion.Euler(direction);
@@ -104,7 +96,7 @@ public class ReadCube : MonoBehaviour
         List<GameObject> facesHit = new List<GameObject>();
         foreach (GameObject rayStart in rayStarts)
         {
-            Vector3 ray = tFront.transform.position;
+            Vector3 ray = rayStart.transform.position;
             RaycastHit hit;
 
             // Does the ray intersect any objects in the layerMask?
