@@ -22,8 +22,8 @@ public class PivotRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+        cubeState = FindObjectOfType<CubeState>();
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class PivotRotation : MonoBehaviour
         rotation = Vector3.zero;
         // get the current mouse position minus the last mouse position
         // so we know how much to rotate the side
-        Vector3 mouseOffset = Input.mousePosition - mouseRef;
+        Vector3 mouseOffset = (Input.mousePosition - mouseRef);
 
         if (side == cubeState.up)
         {

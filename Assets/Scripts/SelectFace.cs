@@ -43,8 +43,11 @@ public class SelectFace : MonoBehaviour
                 // if the face hit exists within a side
                 foreach (List<GameObject> cubeSide in cubeSides)
                 {
-                    // pick it up
-                    cubeState.PickUp(cubeSide);
+                    if (cubeSide.Contains(face))
+                    {
+                        // pick it up
+                        cubeState.PickUp(cubeSide);
+                    }
                 }
             }
         }
