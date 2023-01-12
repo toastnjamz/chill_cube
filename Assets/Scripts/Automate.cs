@@ -29,17 +29,17 @@ public class Automate : MonoBehaviour
         if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
             // do the move at the first index
+            DoMove(moveList[0]);
 
             // remove the move at the first index
             moveList.Remove(moveList[0]);
-
         }
     }
 
     public void Shuffle()
     {
         List<string> moves = new List<string>();
-        // adjust range to make more random
+        // adjust range to make result more random
         int shuffleLength = Random.Range(10, 30);
         for (int i = 0; i < shuffleLength; i++)
         {
