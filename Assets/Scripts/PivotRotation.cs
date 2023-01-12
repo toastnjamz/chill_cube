@@ -100,6 +100,15 @@ public class PivotRotation : MonoBehaviour
         localForward = Vector3.zero - side[4].transform.parent.transform.localPosition;
     }
 
+    public void StartAutoRotate(List<GameObject> side, float angle)
+    {
+        cubeState.PickUp(side);
+        Vector3 localForward = Vector3.zero - side[4].transform.parent.transform.localPosition;
+        targetQuaternion = Quaternion.AngleAxis(angle, localForward) * transform.localRotation;
+        activeSide = side;
+        autoRotating = true;
+    }
+
     // handles the automatic roation
     // call once to setup the variables, then do the actual rotation in Update()
     // to get the angle to rotate to when we let go of the mouse, rotate the current
@@ -134,11 +143,10 @@ public class PivotRotation : MonoBehaviour
             cubeState.PutDown(activeSide, transform.parent);
             readCube.ReadState();
 
+            CubeState.autoRotating = false;
             autoRotating = false;
             // might not need to do this again
             dragging = false;
         }
-
-
     }
 }
