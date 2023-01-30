@@ -69,11 +69,11 @@ public class ReadCube : MonoBehaviour
 
     List<GameObject> BuildRays(Transform rayTransform, Vector3 direction)
     {
-        // The ray count is used to name the rays so we can be sure they are in the right order.
+        // the ray count is used to name the rays so we can be sure they are in the right order.
         int rayCount = 0;
         List<GameObject> rays = new List<GameObject>();
-        // This creates 9 rays in the shape of the side of the cube with
-        // Ray 0 at the top left and Ray 8 at the bottom right:
+        // this creates 9 rays in the shape of the side of the cube with
+        // ray 0 at the top left and Ray 8 at the bottom right:
         //  |0|1|2|
         //  |3|4|5|
         //  |6|7|8|
@@ -102,8 +102,8 @@ public class ReadCube : MonoBehaviour
             Vector3 ray = rayStart.transform.position;
             RaycastHit hit;
 
-            // Does the ray intersect any objects in the layerMask?
-            // If so, fire a yellow Raycast from tFront's transform in the right direction relative to tFront
+            // does the ray intersect any objects in the layerMask?
+            // ff so, fire a yellow Raycast from tFront's transform in the right direction relative to tFront
             // that goes to infinity and only hits objects in the layerMask
             if (Physics.Raycast(ray, rayTransform.forward, out hit, Mathf.Infinity, layerMask))
             {

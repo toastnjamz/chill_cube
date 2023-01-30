@@ -5,7 +5,6 @@ using Kociemba;
 
 public class SolveTwoFace : MonoBehaviour
 {
-    // make private later
     private ReadCube readCube;
     private CubeState cubeState;
     bool doOnce = true;
@@ -37,7 +36,7 @@ public class SolveTwoFace : MonoBehaviour
 
         // solve the cube
         string info = "";
-        // Frist time build the tables
+        // frist time build the tables
         //string solution = SearchRunTime.solution(moveString, out info, buildTables: true);
 
         // every other time use the method that reads from the pre-generated tables
