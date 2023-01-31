@@ -59,6 +59,8 @@ public class ReadCube3x1 : MonoBehaviour
     void SetRayTransforms()
     {
         // populate the ray lists with raycassts eminating from the transform, angled toward the cube.
+
+        // TODO: might need to adjust how many rays are created to fit the 3x1 cube
         upRays = BuildRays(tUp, new Vector3(90, 90, 0));
         downRays = BuildRays(tDown, new Vector3(270, 90, 0));
         leftRays = BuildRays(tLeft, new Vector3(0, 180, 0));
@@ -72,12 +74,10 @@ public class ReadCube3x1 : MonoBehaviour
         // the ray count is used to name the rays so we can be sure they are in the right order.
         int rayCount = 0;
         List<GameObject> rays = new List<GameObject>();
-        // this creates 9 rays in the shape of the side of the cube with
-        // ray 0 at the top left and Ray 8 at the bottom right:
+        // this creates 3 rays in the shape of the side of the cube with
+        // ray 0 at the top left:
         //  |0|1|2|
-        //  |3|4|5|
-        //  |6|7|8|
-        for (int y = 1; y > -2; y--)
+        for (int y = 1; y > 0; y--)
         {
             for (int x = -1; x < 2; x++)
             {
@@ -103,7 +103,7 @@ public class ReadCube3x1 : MonoBehaviour
             RaycastHit hit;
 
             // does the ray intersect any objects in the layerMask?
-            // ff so, fire a yellow Raycast from tFront's transform in the right direction relative to tFront
+            // if so, fire a yellow Raycast from tFront's transform in the right direction relative to tFront
             // that goes to infinity and only hits objects in the layerMask
             if (Physics.Raycast(ray, rayTransform.forward, out hit, Mathf.Infinity, layerMask))
             {

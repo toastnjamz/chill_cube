@@ -43,6 +43,8 @@ public class CubeMap3x1 : MonoBehaviour
     // loops through each of the children in a side of the CubeMap (the faces named 0-8)
     // and uses the first character of the name of the face at the same index in the list of faces 
     // to update the color of the CubeMap
+
+    // TODO: might need to update the colors if I decide to use the cube map for the 3x1 level
     void UpdateMap(List<GameObject> face, Transform side)
     {
         int i = 0;
