@@ -16,14 +16,14 @@ public class PivotRotation3x1 : MonoBehaviour
     // for the target angle we want to automatically move to
     private Quaternion targetQuaternion;
 
-    private ReadCube readCube;
-    private CubeState cubeState;
+    private ReadCube3x1 readCube;
+    private CubeState3x1 cubeState;
 
     // Start is called before the first frame update
     void Start()
     {
-        readCube = FindObjectOfType<ReadCube>();
-        cubeState = FindObjectOfType<CubeState>();
+        readCube = FindObjectOfType<ReadCube3x1>();
+        cubeState = FindObjectOfType<CubeState3x1>();
     }
 
     // Late Update is called once per frame at the end
@@ -100,6 +100,7 @@ public class PivotRotation3x1 : MonoBehaviour
         localForward = Vector3.zero - side[1].transform.parent.transform.localPosition;
     }
 
+    // might be able to remove this or comment it out b/c we're not shuffling or auto-solving in this level
     public void StartAutoRotate(List<GameObject> side, float angle)
     {
         cubeState.PickUp(side);

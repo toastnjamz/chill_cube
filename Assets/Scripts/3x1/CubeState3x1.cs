@@ -12,6 +12,7 @@ public class CubeState3x1 : MonoBehaviour
     public List<GameObject> left = new List<GameObject>();
     public List<GameObject> right = new List<GameObject>();
 
+    // might be able to remove this or comment it out b/c we're not shuffling or auto-solving in this level
     public static bool autoRotating = false;
     public static bool started = false;
 
@@ -63,6 +64,7 @@ public class CubeState3x1 : MonoBehaviour
         return sideString;
     }
 
+    // might be able to remove this or comment it out b/c we're not shuffling or auto-solving in this level
     public string GetStateString()
     {
         string stateString = "";

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SelectFace3x1 : MonoBehaviour
 {
-    CubeState cubeState;
-    ReadCube readCube;
+    CubeState3x1 cubeState;
+    ReadCube3x1 readCube;
     int layerMask = 1 << 8;
 
     // Start is called before the first frame update
     void Start()
     {
-        cubeState = FindObjectOfType<CubeState>();
-        readCube = FindObjectOfType<ReadCube>();
+        cubeState = FindObjectOfType<CubeState3x1>();
+        readCube = FindObjectOfType<ReadCube3x1>();
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class SelectFace3x1 : MonoBehaviour
                         cubeState.PickUp(cubeSide);
                         // start the side rotation logic
                         // updated to reflect 3x1 puzzle
-                        cubeSide[4].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
+                        cubeSide[1].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
                     }
                 }
             }

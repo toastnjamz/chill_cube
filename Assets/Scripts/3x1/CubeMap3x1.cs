@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CubeMap3x1 : MonoBehaviour
 {
-    CubeState cubeState;
+    CubeState3x1 cubeState;
 
     public Transform up;
     public Transform down;
@@ -31,7 +31,7 @@ public class CubeMap3x1 : MonoBehaviour
     // from the CubeState script that we want to compare
     public void Set()
     {
-        cubeState = FindObjectOfType<CubeState>();
+        cubeState = FindObjectOfType<CubeState3x1>();
         UpdateMap(cubeState.front, front);
         UpdateMap(cubeState.back, back);
         UpdateMap(cubeState.left, left);
