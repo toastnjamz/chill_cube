@@ -50,7 +50,16 @@ public class SelectFace3x1 : MonoBehaviour
                         cubeState.PickUp(cubeSide);
                         // start the side rotation logic
                         // updated to reflect 3x1 puzzle
-                        cubeSide[1].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
+                        
+                        // if cubeSide is on the end of the puzzle
+                        if (cubeSide.Capacity > 1)
+                        {
+                            cubeSide[1].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
+                        }
+                        else
+                        {
+                            cubeSide[0].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
+                        }
                     }
                 }
             }

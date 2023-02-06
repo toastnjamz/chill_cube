@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class CubeMap3x1 : MonoBehaviour
         int i = 0;
         foreach (Transform map in side)
         {
+            // index out of range exception
             if (face[i].name[0] == 'F')
             {
                 map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1); // orange

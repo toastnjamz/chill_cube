@@ -35,6 +35,8 @@ public class CubeState3x1 : MonoBehaviour
             // attach the parent of each face (the little cube)
             // to the parent of the 1st index (the little cube in the middle)
             // unless it is already the 1st index, since you can't parent something to itself
+            
+            // TODO: fix this code for the 3x1 puzzle
             if (face != cubeSide[1])
             {
                 face.transform.parent.transform.parent = cubeSide[1].transform.parent;

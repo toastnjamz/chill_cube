@@ -41,6 +41,7 @@ public class ReadCube3x1 : MonoBehaviour
 
     public void ReadState()
     {
+        // TODO: might not need these
         cubeState = FindObjectOfType<CubeState3x1>();
         cubeMap = FindObjectOfType<CubeMap3x1>();
 
@@ -54,13 +55,13 @@ public class ReadCube3x1 : MonoBehaviour
         cubeState.back = ReadFace(backRays, tBack);
 
         // update the map with the found positions
+        // index out of range exception
         cubeMap.Set();
     }
     void SetRayTransforms()
     {
         // populate the ray lists with raycassts eminating from the transform, angled toward the cube.
-
-        // TODO: might need to adjust how many rays are created to fit the 3x1 cube
+        // TODO: adjust how many rays are created to fit the 3x1 cube
         upRays = BuildRays(tUp, new Vector3(90, 90, 0));
         downRays = BuildRays(tDown, new Vector3(270, 90, 0));
         leftRays = BuildRays(tLeft, new Vector3(0, 180, 0));
@@ -69,7 +70,7 @@ public class ReadCube3x1 : MonoBehaviour
         backRays = BuildRays(tBack, new Vector3(0, 270, 0));
     }
 
-    List<GameObject> BuildRays(Transform rayTransform, Vector3 direction)
+    /*List<GameObject> BuildRays(Transform rayTransform, Vector3 direction)
     {
         // the ray count is used to name the rays so we can be sure they are in the right order.
         int rayCount = 0;
@@ -78,6 +79,33 @@ public class ReadCube3x1 : MonoBehaviour
         // ray 0 at the top left:
         //  |0|1|2|
         for (int y = 1; y > 0; y--)
+        {
+            for (int x = -1; x < 2; x++)
+            {
+                Vector3 startPos = new Vector3(rayTransform.localPosition.x + x,
+                                               rayTransform.localPosition.y + y,
+                                               rayTransform.localPosition.z);
+                GameObject rayStart = Instantiate(emptyGO, startPos, Quaternion.identity, rayTransform);
+                rayStart.name = rayCount.ToString();
+                rays.Add(rayStart);
+                rayCount++;
+            }
+        }
+        rayTransform.localRotation = Quaternion.Euler(direction);
+        return rays;
+    }*/
+
+    List<GameObject> BuildRays(Transform rayTransform, Vector3 direction)
+    {
+        // the ray count is used to name the rays so we can be sure they are in the right order.
+        int rayCount = 0;
+        List<GameObject> rays = new List<GameObject>();
+        // this creates 9 rays in the shape of the side of the cube with
+        // ray 0 at the top left and Ray 8 at the bottom right:
+        //  |0|1|2|
+        //  |3|4|5|
+        //  |6|7|8|
+        for (int y = 1; y > -2; y--)
         {
             for (int x = -1; x < 2; x++)
             {
