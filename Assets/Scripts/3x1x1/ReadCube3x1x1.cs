@@ -14,6 +14,7 @@ public class ReadCube3x1x1 : MonoBehaviour
     private int layerMask = 1 << 8; // this layer mask is for the faces of the cube only, which are on layer 8
     CubeState3x1x1 cubeState;
     CubeMap3x1x1 cubeMap;
+    public GameObject emptyGO;
 
     // Start is called before the first frame update
     void Start()
@@ -46,5 +47,37 @@ public class ReadCube3x1x1 : MonoBehaviour
     void Update()
     {
 
+    }
+
+    List<GameObject> BuildRays(Transform rayTransform, Vector3 direction)
+    {
+        // the ray count is used to name the rays so we can be sure they are in the right order.
+        int rayCount = 0;
+        List<GameObject> rays = new List<GameObject>();
+
+        if (rayTransform == tLeft || rayTransform == tRight)
+        {
+            Vector3 startPos = new Vector3(rayTransform.localPosition.x,
+                                              rayTransform.localPosition.y,
+                                              rayTransform.localPosition.z);
+            GameObject rayStart = Instantiate(emptyGO, startPos, Quaternion.identity, rayTransform);
+            rayStart.name = "0";
+            rays.Add(rayStart);
+        }
+        else
+        {
+            for (int x = -1; x < 2; x++)
+            {
+                Vector3 startPos = new Vector3(rayTransform.localPosition.x + x,
+                                               rayTransform.localPosition.y,
+                                               rayTransform.localPosition.z);
+                GameObject rayStart = Instantiate(emptyGO, startPos, Quaternion.identity, rayTransform);
+                rayStart.name = rayCount.ToString();
+                rays.Add(rayStart);
+                rayCount++;
+            }
+        }
+        rayTransform.localRotation = Quaternion.Euler(direction);
+        return rays;
     }
 }
