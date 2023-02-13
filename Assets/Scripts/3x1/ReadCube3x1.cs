@@ -41,7 +41,6 @@ public class ReadCube3x1 : MonoBehaviour
 
     public void ReadState()
     {
-        // TODO: might not need these
         cubeState = FindObjectOfType<CubeState3x1>();
         cubeMap = FindObjectOfType<CubeMap3x1>();
 

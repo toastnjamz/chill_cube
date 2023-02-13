@@ -34,11 +34,11 @@ public class CubeMap3x1x1 : MonoBehaviour
         cubeState = FindObjectOfType<CubeState3x1x1>();
         
         UpdateMap(cubeState.front, front);
-/*        UpdateMap(cubeState.back, back);
+        UpdateMap(cubeState.back, back);
         UpdateMap(cubeState.left, left);
         UpdateMap(cubeState.right, right);
         UpdateMap(cubeState.up, up);
-        UpdateMap(cubeState.down, down);*/
+        UpdateMap(cubeState.down, down);
     }
 
     // loops through each of the children in a side of the CubeMap (the faces named 0-8)
@@ -50,11 +50,11 @@ public class CubeMap3x1x1 : MonoBehaviour
         foreach (Transform map in side)
         {
             // index out of range exception
-            if (face[0].name[0] == 'F')
+            if (face[i].name[0] == 'F')
             {
                 map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1); // orange
             }
-/*            if (face[i].name[0] == 'B')
+            if (face[i].name[0] == 'B')
             {
                 map.GetComponent<Image>().color = Color.red;
             }
@@ -73,7 +73,7 @@ public class CubeMap3x1x1 : MonoBehaviour
             if (face[i].name[0] == 'R')
             {
                 map.GetComponent<Image>().color = Color.blue;
-            }*/
+            }
             i++;
         }
     }
