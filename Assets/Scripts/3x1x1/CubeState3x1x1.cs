@@ -12,15 +12,28 @@ public class CubeState3x1x1 : MonoBehaviour
     public List<GameObject> left = new List<GameObject>();
     public List<GameObject> right = new List<GameObject>();
 
+    // pieces
+    public GameObject centerPiece;
+    public GameObject leftPiece;
+    public GameObject rightPiece;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        centerPiece = GameObject.Find("CenterPiece");
+        leftPiece = GameObject.Find("LeftPiece");
+        rightPiece = GameObject.Find("RightPiece");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void PickUp(GameObject face)
+    {
+        // start the side (piece?) rotation logic
+        face.transform.parent.GetComponent<PivotRotation3x1x1>().Rotate(face);
     }
 }

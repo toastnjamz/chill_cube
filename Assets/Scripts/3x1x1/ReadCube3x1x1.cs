@@ -29,12 +29,13 @@ public class ReadCube3x1x1 : MonoBehaviour
         SetRayTransforms();
         cubeState = FindObjectOfType<CubeState3x1x1>();
         cubeMap = FindObjectOfType<CubeMap3x1x1>();
+        //ReadState();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ReadState();
+        
     }
 
     public void ReadState()
@@ -116,14 +117,13 @@ public class ReadCube3x1x1 : MonoBehaviour
             {
                 Debug.DrawRay(ray, rayTransform.forward * hit.distance, Color.yellow);
                 facesHit.Add(hit.collider.gameObject);
-                print(hit.collider.gameObject.name);
+                //print(hit.collider.gameObject.name);
             }
             else
             {
                 Debug.DrawRay(ray, rayTransform.forward * 1000, Color.green);
             }
         }
-
         return facesHit;
     }
 }

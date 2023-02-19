@@ -23,8 +23,8 @@ public class RotateBigCube3x1x1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        Swipe();
-        Drag();*/
+        Swipe();
+        Drag();
     }
 
     void Drag()
