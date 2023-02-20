@@ -20,9 +20,9 @@ public class CubeState3x1x1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        centerPiece = GameObject.Find("CenterPiece");
+        /*centerPiece = GameObject.Find("CenterPiece");
         leftPiece = GameObject.Find("LeftPiece");
-        rightPiece = GameObject.Find("RightPiece");
+        rightPiece = GameObject.Find("RightPiece");*/
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class CubeState3x1x1 : MonoBehaviour
 
     public void PickUp(GameObject face)
     {
-        // start the side (piece?) rotation logic
+        // start the piece rotation logic
         face.transform.parent.GetComponent<PivotRotation3x1x1>().Rotate(face);
     }
 }

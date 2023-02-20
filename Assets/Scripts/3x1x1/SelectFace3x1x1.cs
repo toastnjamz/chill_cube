@@ -18,7 +18,7 @@ public class SelectFace3x1x1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !CubeState.autoRotating)
+        if (Input.GetMouseButtonDown(0))
         {
             // read the current state of the cube
             readCube.ReadState();

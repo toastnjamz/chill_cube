@@ -33,6 +33,15 @@ public class PivotRotation3x1x1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dragging)
+        {
+            SpinPiece(activePiece);
+            if (Input.GetMouseButtonUp(0))
+            {
+                dragging = false;
+            }
+        }
+
 /*        if (dragging && !autoRotating)
         {
             SpinSide(activeSide);
@@ -50,7 +59,7 @@ public class PivotRotation3x1x1 : MonoBehaviour
 
     // converting to spin a single piece
     // calculate the rotation that is called on every frame we are dragging the side
-    private void SpinSide(GameObject piece)
+    private void SpinPiece(GameObject piece)
     {
         // reset the rotation
         rotation = Vector3.zero;
@@ -58,7 +67,12 @@ public class PivotRotation3x1x1 : MonoBehaviour
         // so we know how much to rotate the side
         Vector3 mouseOffset = (Input.mousePosition - mouseRef);
 
-        if (side == cubeState.up)
+        if (piece == cubeState.centerPiece)
+        {
+            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
+        }
+
+/*        if (side == cubeState.up)
         {
             rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
         }
@@ -73,7 +87,6 @@ public class PivotRotation3x1x1 : MonoBehaviour
         if (side == cubeState.right)
         {
             rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-        }
         if (piece == cubeState.front)
         {
             rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
@@ -81,7 +94,7 @@ public class PivotRotation3x1x1 : MonoBehaviour
         if (side == cubeState.back)
         {
             rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-        }
+        }*/
 
         // rotate
         transform.Rotate(rotation, Space.Self);
@@ -89,48 +102,6 @@ public class PivotRotation3x1x1 : MonoBehaviour
         // store mouse for the next time we call this method
         mouseRef = Input.mousePosition;
     }
-
-    // TODO: remove
-    // calculate the rotation that is called on every frame we are dragging the side
-    /*    private void SpinSide(List<GameObject> side)
-        {
-            // reset the rotation
-            rotation = Vector3.zero;
-            // get the current mouse position minus the last mouse position
-            // so we know how much to rotate the side
-            Vector3 mouseOffset = (Input.mousePosition - mouseRef);
-
-            if (side == cubeState.up)
-            {
-                rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-            }
-            if (side == cubeState.down)
-            {
-                rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-            }
-            if (side == cubeState.left)
-            {
-                rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-            }
-            if (side == cubeState.right)
-            {
-                rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-            }
-            if (side == cubeState.front)
-            {
-                rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-            }
-            if (side == cubeState.back)
-            {
-                rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-            }
-
-            // rotate
-            transform.Rotate(rotation, Space.Self);
-
-            // store mouse for the next time we call this method
-            mouseRef = Input.mousePosition;
-        }*/
 
     // called once at the start of the rotation to set the variables
     // then actual rotation will be done in Update()
