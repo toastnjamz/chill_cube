@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PivotRotation3x1x1 : MonoBehaviour
 {
+    private List<GameObject> activeSide;
     private GameObject activePiece;
     
     private Vector3 localForward;
@@ -32,7 +33,8 @@ public class PivotRotation3x1x1 : MonoBehaviour
     {
         if (dragging && !autoRotating)
         {
-            SpinPiece(activePiece);
+            //SpinPiece(activeSide);
+            SpinSide(activeSide);
             if (Input.GetMouseButtonUp(0))
             {
                 dragging = false;
@@ -68,10 +70,52 @@ public class PivotRotation3x1x1 : MonoBehaviour
         mouseRef = Input.mousePosition;
     }
 
+    // calculate the rotation that is called on every frame we are dragging the side
+    private void SpinSide(List<GameObject> side)
+    {
+        // reset the rotation
+        rotation = Vector3.zero;
+        // get the current mouse position minus the last mouse position
+        // so we know how much to rotate the side
+        Vector3 mouseOffset = (Input.mousePosition - mouseRef);
+
+        if (side == cubeState.up)
+        {
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
+        }
+        if (side == cubeState.down)
+        {
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
+        }
+        if (side == cubeState.left)
+        {
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
+        }
+        if (side == cubeState.right)
+        {
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
+        }
+        if (side == cubeState.front)
+        {
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
+        }
+        if (side == cubeState.back)
+        {
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
+        }
+
+        // rotate
+        transform.Rotate(rotation, Space.Self);
+
+        // store mouse for the next time we call this method
+        mouseRef = Input.mousePosition;
+    }
+
     // called once at the start of the rotation to set the variables
     // then actual rotation will be done in Update()
-    public void Rotate(GameObject face)
+    public void Rotate(List<GameObject> cubeSide, GameObject face)
     {
+        activeSide = cubeSide;
         activePiece = face.transform.parent.gameObject;
         // keep track of the start position of the mouse so we know
         // how much to rotate the side by as the mouse moves away 

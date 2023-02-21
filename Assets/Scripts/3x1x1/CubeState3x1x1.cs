@@ -31,9 +31,10 @@ public class CubeState3x1x1 : MonoBehaviour
         
     }
 
-    public void PickUp(GameObject face)
+    // TODO: remove
+/*    public void PickUp(GameObject face)
     {
         // start the piece rotation logic
         face.transform.parent.GetComponent<PivotRotation3x1x1>().Rotate(face);
-    }
+    }*/
 }

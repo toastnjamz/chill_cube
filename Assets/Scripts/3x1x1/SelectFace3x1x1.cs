@@ -32,8 +32,25 @@ public class SelectFace3x1x1 : MonoBehaviour
                 // save the face we hit
                 GameObject face = hit.collider.gameObject;
 
-                // rotate the piece the face it attached to
-                cubeState.PickUp(face);
+                // make a list of all the sides (lists of face GameObjects)
+                List<List<GameObject>> cubeSides = new List<List<GameObject>>()
+                {
+                    cubeState.up,
+                    cubeState.down,
+                    cubeState.left,
+                    cubeState.right,
+                    cubeState.front,
+                    cubeState.back,
+                };
+                // if the face hit exists within a side
+                foreach (List<GameObject> cubeSide in cubeSides)
+                {
+                    if (cubeSide.Contains(face))
+                    {
+                        // start the side rotation logic
+                        face.transform.parent.GetComponent<PivotRotation3x1x1>().Rotate(cubeSide, face);
+                    }
+                }
             }
         }
     }
