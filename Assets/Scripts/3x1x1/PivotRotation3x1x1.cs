@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PivotRotation3x1x1 : MonoBehaviour
 {
-    // converting the script to rotate a single piece instead
     private GameObject activePiece;
-    // TODO: remove
-    private List<GameObject> activeSide;
     
     private Vector3 localForward;
     private Vector3 mouseRef;
     private bool dragging = false;
     private bool autoRotating = false;
     private float sensitivity = 0.4f;
-    private float speed = 300f;
+    private float speed = 50f;
     private Vector3 rotation;
 
     // for the target angle we want to automatically move to
@@ -33,18 +30,9 @@ public class PivotRotation3x1x1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dragging)
+        if (dragging && !autoRotating)
         {
             SpinPiece(activePiece);
-            if (Input.GetMouseButtonUp(0))
-            {
-                dragging = false;
-            }
-        }
-
-/*        if (dragging && !autoRotating)
-        {
-            SpinSide(activeSide);
             if (Input.GetMouseButtonUp(0))
             {
                 dragging = false;
@@ -54,11 +42,11 @@ public class PivotRotation3x1x1 : MonoBehaviour
         if (autoRotating)
         {
             AutoRotate();
-        }*/
+        }
     }
 
     // converting to spin a single piece
-    // calculate the rotation that is called on every frame we are dragging the side
+    // calculate the rotation that is called on every frame we are dragging the piece
     private void SpinPiece(GameObject piece)
     {
         // reset the rotation
@@ -66,36 +54,13 @@ public class PivotRotation3x1x1 : MonoBehaviour
         // get the current mouse position minus the last mouse position
         // so we know how much to rotate the side
         Vector3 mouseOffset = (Input.mousePosition - mouseRef);
-
-        if (piece == cubeState.centerPiece)
-        {
-            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-        }
-
-/*        if (side == cubeState.up)
-        {
-            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-        }
-        if (side == cubeState.down)
-        {
-            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-        }
-        if (side == cubeState.left)
-        {
-            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-        }
-        if (side == cubeState.right)
-        {
-            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-        if (piece == cubeState.front)
-        {
-            rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
-        }
-        if (side == cubeState.back)
-        {
-            rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
-        }*/
-
+        
+        // rotate all three pieces the same way
+        // TODO: there's an issue where if the puzzle is vertical, the clicking movement is reversed
+        /*if (piece.transform.parent.rotation.x > 1 || piece.transform.parent.rotation.x < 1)*/
+        rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
+        
+        
         // rotate
         transform.Rotate(rotation, Space.Self);
 
@@ -107,7 +72,7 @@ public class PivotRotation3x1x1 : MonoBehaviour
     // then actual rotation will be done in Update()
     public void Rotate(GameObject face)
     {
-        activePiece = face;
+        activePiece = face.transform.parent.gameObject;
         // keep track of the start position of the mouse so we know
         // how much to rotate the side by as the mouse moves away 
         // from the start position
@@ -122,7 +87,7 @@ public class PivotRotation3x1x1 : MonoBehaviour
     // call once to setup the variables, then do the actual rotation in Update()
     // to get the angle to rotate to when we let go of the mouse, rotate the current
     // rotation to the nearest 90 degrees, then set that as the target
-/*    public void RotateToRightAngle()
+    public void RotateToRightAngle()
     {
         Vector3 vec = transform.localEulerAngles;
         // round vec to the nearest 90 degrees
@@ -132,9 +97,9 @@ public class PivotRotation3x1x1 : MonoBehaviour
 
         targetQuaternion.eulerAngles = vec;
         autoRotating = true;
-    }*/
+    }
 
-/*    private void AutoRotate()
+    private void AutoRotate()
     {
         // releasing the left mouse button turns dragging off, but
         // there may be other times when we want to call this method
@@ -148,14 +113,12 @@ public class PivotRotation3x1x1 : MonoBehaviour
         if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
         {
             transform.localRotation = targetQuaternion;
-            // unparent the little cubes
-            //cubeState.PutDown(activeSide, transform.parent);
             readCube.ReadState();
 
             CubeState.autoRotating = false;
             autoRotating = false;
             // might not need to do this again
-            dragging = false;
+/*            dragging = false;*/
         }
-    }*/
+    }
 }
