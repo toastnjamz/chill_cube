@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 // sets the script to be executed later than all default scripts
 // this is helpful for UI, since other things may need to be initialized before setting the UI
 [DefaultExecutionOrder(1000)]
-public class MenuUIHandler : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public GameObject pauseMenuUI;
+    public GameObject pauseButton;
+    public static bool GameIsPaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,28 @@ public class MenuUIHandler : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
 
+    public void PauseGame()
+    {
+        pauseMenuUI.SetActive(true);
+        pauseButton.SetActive(false);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenuUI.SetActive(false);
+        pauseButton.SetActive(true);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    public void LoadMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
+    
     public void QuitGame()
     {
 #if UNITY_EDITOR
