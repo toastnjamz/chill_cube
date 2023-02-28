@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject pauseButton;
     public static bool GameIsPaused = false;
 
+    // TODO: might not need
+    public float restartDelay = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    // TODO: change to shuffle cube back to starting point?
+    public void Restart()
+    {
+        ///Invoke("Restart", restartDelay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
     public void QuitGame()
