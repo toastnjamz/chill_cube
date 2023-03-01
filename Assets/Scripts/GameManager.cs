@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject pauseButton;
     public static bool GameIsPaused = false;
+    public GameObject completeLevelUI;
 
     // TODO: might not need
     public float restartDelay = 1f;
@@ -31,9 +32,8 @@ public class GameManager : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
-
-        // to load the next scene incrementally
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        // TODO: change to the player's last played scene (loaded from save file)
+        //SceneManager.GetActiveScene();
     }
 
     public void PauseGame()
@@ -72,5 +72,10 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void CompleteLevel()
+    {
+        completeLevelUI.SetActive(true);
     }
 }
