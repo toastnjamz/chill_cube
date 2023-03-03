@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,18 +12,6 @@ public class CubeMap3x1x1 : MonoBehaviour
     public Transform right;
     public Transform front;
     public Transform back;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     // sets the colors of the CubeMap 
     // uses UpdateMap() method on each of the transforms, passing in the side of the cube

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
@@ -74,6 +72,7 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
+    // turns on LevelComplete UI, animates, and transitions to the next level
     public void CompleteLevel()
     {
         completeLevelUI.SetActive(true);
