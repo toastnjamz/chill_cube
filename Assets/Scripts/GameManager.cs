@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject pauseButton;
     public static bool GameIsPaused = false;
-    public GameObject completeLevelUI;
+    public bool LevelIsComplete = false;
+    public GameObject levelCompleteUI;
 
     // TODO: might not need
     public float restartDelay = 1f;
@@ -24,7 +25,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (LevelIsComplete)
+        {
+            CompleteLevel();
+        }
     }
 
     public void PlayGame()
@@ -62,7 +66,13 @@ public class GameManager : MonoBehaviour
         ///Invoke("Restart", restartDelay);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    
+
+    // turns on LevelComplete UI, animates, and transitions to the next level
+    public void CompleteLevel()
+    {
+        levelCompleteUI.SetActive(true);
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
@@ -70,11 +80,5 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
-    }
-
-    // turns on LevelComplete UI, animates, and transitions to the next level
-    public void CompleteLevel()
-    {
-        completeLevelUI.SetActive(true);
     }
 }
