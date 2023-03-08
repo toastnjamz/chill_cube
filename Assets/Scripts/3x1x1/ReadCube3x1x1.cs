@@ -19,7 +19,7 @@ public class ReadCube3x1x1 : MonoBehaviour
 
     private int layerMask = 1 << 8; // this layer mask is for the faces of the cube only, which are on layer 8
     CubeState3x1x1 cubeState;
-    CubeMap3x1x1 cubeMap;
+    //CubeMap3x1x1 cubeMap;
     public GameObject emptyGO;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class ReadCube3x1x1 : MonoBehaviour
     {
         SetRayTransforms();
         cubeState = FindObjectOfType<CubeState3x1x1>();
-        cubeMap = FindObjectOfType<CubeMap3x1x1>();
+        //cubeMap = FindObjectOfType<CubeMap3x1x1>();
         //ReadState();
     }
 
@@ -40,7 +40,7 @@ public class ReadCube3x1x1 : MonoBehaviour
     public void ReadState()
     {
         cubeState = FindObjectOfType<CubeState3x1x1>();
-        cubeMap = FindObjectOfType<CubeMap3x1x1>();
+        //cubeMap = FindObjectOfType<CubeMap3x1x1>();
 
         // set the state of each position in the list of sides
         // so we know what color is in what position
@@ -52,7 +52,7 @@ public class ReadCube3x1x1 : MonoBehaviour
         cubeState.back = ReadFace(backRays, tBack);
 
         // update the map with the found positions
-        cubeMap.Set();
+        //cubeMap.Set();
     }
 
     void SetRayTransforms()

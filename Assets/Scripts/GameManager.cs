@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject pauseButton;
     public static bool GameIsPaused = false;
-    public bool LevelIsComplete = false;
+    public bool levelIsComplete = false;
     public GameObject levelCompleteUI;
 
     // TODO: might not need
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LevelIsComplete)
+        if (levelIsComplete)
         {
             CompleteLevel();
         }

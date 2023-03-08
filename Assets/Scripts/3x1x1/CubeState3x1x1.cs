@@ -28,9 +28,13 @@ public class CubeState3x1x1 : MonoBehaviour
     void Update()
     {
         // this works, but it's not what I want because it will always be true
-        if (front.TrueForAll(x => x.name.Equals("Orange")))
+/*        if (front.TrueForAll(x => x.name.Equals("Orange")))
         {
-            gameManager.LevelIsComplete = true;
-        }
+            gameManager.levelIsComplete = true;
+        }*/
+
+        //TODO: find a way to check if all faces in a side are the same color
+        
+        
     }
 }
